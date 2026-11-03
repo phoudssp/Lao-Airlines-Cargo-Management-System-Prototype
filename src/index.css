@@ -1,0 +1,47 @@
+@import "@fontsource/noto-sans/400.css";
+@import "@fontsource/noto-sans/500.css";
+@import "@fontsource/noto-sans/600.css";
+@import "@fontsource/noto-sans/700.css";
+@import "@fontsource/noto-sans-lao/400.css";
+@import "@fontsource/noto-sans-lao/500.css";
+@import "@fontsource/noto-sans-lao/600.css";
+@import "@fontsource/noto-sans-lao/700.css";
+@import "@fontsource/noto-sans-mono/400.css";
+@import "@fontsource/noto-sans-mono/600.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0f2233; --ink-2: #47596b; --ink-3: #6a7a8a;
+  --navy: #0b2a4a; --navy-2: #123a63; --navy-3: #1b4b7d; --navy-text: #c6d6e6;
+  --brand: #0f5596; --brand-hover: #0b4679; --brand-soft: #e6eff8;
+  --surface: #ffffff; --surface-2: #f6f8fa; --page: #eff2f6;
+  --line: #dce3ea; --line-strong: #b9c5d1;
+  --ok: #2c6e1f; --ok-soft: #e8f3e0; --warn: #8f5a00; --warn-soft: #fbf0d9;
+  --bad: #b81d26; --bad-soft: #fbe7e8; --info: #0f5596; --info-soft: #e6eff8;
+  color-scheme: light;
+}
+html, body, #root { height: 100%; }
+body { background: var(--page); color: var(--ink); font-family: "Noto Sans", "Noto Sans Lao", system-ui, sans-serif; font-size: 14.5px; line-height: 23px; -webkit-font-smoothing: antialiased; }
+::selection { background: #bcd6ee; color: var(--ink); }
+.tnum { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; border-radius: 3px; }
+* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.nav-scroll { scrollbar-color: var(--navy-3) transparent; }
+dialog::backdrop { background: rgb(11 42 74 / .45); }
+/* AWB-form box caption: small label on top of each value */
+.box-label { font-size: 12px; line-height: 16px; color: var(--ink-2); font-weight: 500; }
+
+/* Print: only the open print sheet reaches paper */
+.print-root { display: none; }
+@media print {
+  @page { size: A4; margin: 10mm; }
+  html, body { background: #fff !important; height: auto; }
+  body.printing #root, body.printing dialog, body.printing .no-print { display: none !important; }
+  body.printing .print-root { display: block !important; }
+}
+
+/* A grid or flex child may not force the page wider than the screen; wide tables scroll inside their panel */
+main .grid > *, main [class*="flex-wrap"] > * { min-width: 0; }
+main select, main input { max-width: 100%; }
